@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import Head from 'next/head';
+import { StockSummary } from '@/types/stock.types';
 
 type Stock = {
   code: string;
@@ -106,7 +107,7 @@ export default function StockMonitor() {
       
       // Map the summary data to our stocks
       const updatedStocks = Array.isArray(stocksData) ? stocksData.map((stock: Stock) => {
-        const stockSummary = summaryData.data.find((s: any) => s.StockCode === stock.code);
+        const stockSummary = summaryData.data.find((s: StockSummary) => s.StockCode === stock.code);
         if (stockSummary) {
           return {
             ...stock,

@@ -44,7 +44,7 @@ export async function fetchStockSummary() {
       try {
         const errorData = await response.json();
         errorDetails = JSON.stringify(errorData);
-      } catch (e) {
+      } catch (_) {
         errorDetails = await response.text();
       }
       console.error('API Error Details:', {
@@ -59,20 +59,18 @@ export async function fetchStockSummary() {
     const data = await response.json();
     console.log('Successfully fetched stock data');
     return data;
-  } catch (error: any) {
+  } catch (error: unknown) {
     const errorInfo = {
-      name: error?.name || 'UnknownError',
-      message: error?.message || 'No error message',
-      stack: error?.stack || 'No stack trace',
-      ...(error?.response && { response: error.response })
+      name: error instanceof Error ? error.name : 'UnknownError',
+      message: error instanceof Error ? error.message : 'No error message',
+      stack: error instanceof Error ? error.stack : 'No stack trace',
+      ...(error && typeof error === 'object' && 'response' in error ? { 
+        response: (error as { response: unknown }).response 
+      } : {})
     };
     
     console.error('Error in fetchStockSummary:', errorInfo);
-    
-    // Create a new error with the enhanced message
-    const enhancedError = new Error(`Failed to fetch stock data: ${errorInfo.message}`);
-    Object.assign(enhancedError, errorInfo);
-    throw enhancedError;
+    throw error;
   }
 }
 
