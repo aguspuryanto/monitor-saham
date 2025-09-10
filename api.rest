@@ -1,0 +1,7 @@
+GET https://www.idx.co.id/primary/TradingSummary/GetStockSummary HTTP/1.1
+Accept: application/json
+
+{
+    length: 9999,
+    start: 0
+}

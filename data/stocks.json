@@ -1,0 +1,90 @@
+[
+  {
+    "code": "BLOG",
+    "buyPrice": 599,
+    "currentPrice": 0,
+    "stopLoss": 550,
+    "takeProfit": 600,
+    "change": 0
+  },
+  {
+    "code": "EMTK",
+    "buyPrice": 1315,
+    "currentPrice": 0,
+    "stopLoss": 1200,
+    "takeProfit": 1500,
+    "change": 0
+  },
+  {
+    "code": "COIN",
+    "buyPrice": 2590,
+    "currentPrice": 0,
+    "stopLoss": 2550,
+    "takeProfit": 3500,
+    "change": 0
+  },
+  {
+    "code": "BWPT",
+    "buyPrice": 129.19,
+    "currentPrice": 0,
+    "stopLoss": 125,
+    "takeProfit": 135,
+    "change": 0
+  },
+  {
+    "code": "NINE",
+    "buyPrice": 198,
+    "currentPrice": 0,
+    "stopLoss": 190,
+    "takeProfit": 250,
+    "change": 0
+  },
+  {
+    "code": "CDIA",
+    "buyPrice": 1071,
+    "currentPrice": 0,
+    "stopLoss": 1070,
+    "takeProfit": 1150,
+    "change": 0
+  },
+  {
+    "code": "FUTR",
+    "buyPrice": 167,
+    "currentPrice": 0,
+    "stopLoss": 150.3,
+    "takeProfit": 217.1,
+    "change": 0
+  },
+  {
+    "code": "BUVA",
+    "buyPrice": 335,
+    "currentPrice": 0,
+    "stopLoss": 301.5,
+    "takeProfit": 435.5,
+    "change": 0
+  },
+  {
+    "code": "FITT",
+    "buyPrice": 486,
+    "currentPrice": 0,
+    "stopLoss": 437.4,
+    "takeProfit": 631.8,
+    "change": 0
+  },
+  {
+    "code": "KBLV",
+    "buyPrice": 178,
+    "currentPrice": 0,
+    "stopLoss": 160.2,
+    "takeProfit": 231.4,
+    "change": 0
+  },
+  {
+    "code": "SCMA",
+    "buyPrice": 249,
+    "currentPrice": "",
+    "stopLoss": 224.1,
+    "takeProfit": 323.7,
+    "change": 0
+  }
+]
