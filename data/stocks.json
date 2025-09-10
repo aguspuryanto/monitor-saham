@@ -17,10 +17,10 @@
   },
   {
     "code": "COIN",
-    "buyPrice": 2590,
+    "buyPrice": 2394,
     "currentPrice": 0,
-    "stopLoss": 2550,
-    "takeProfit": 3500,
+    "stopLoss": 2300,
+    "takeProfit": 2600,
     "change": 0
   },
   {

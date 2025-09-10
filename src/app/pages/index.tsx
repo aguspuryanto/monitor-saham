@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import Head from 'next/head';
-import { StockSummary } from '@/types/stock.types';
+import { StockSummary, StockSummaryPasardana } from '@/types/stock.types';
 
 type Stock = {
   code: string;
@@ -91,11 +91,12 @@ export default function StockMonitor() {
       
       const stocksData = await stocksResponse.json();
       const summaryData = await summaryResponse.json();
-      console.log(summaryData.data[0].Date);
+      // console.log(summaryData.data[0].Date);
+      // console.log(summaryData.data[0].LastDate);
       
       // Update last update time if data is available
-      if (summaryData && summaryData.data && summaryData.data[0] && summaryData.data[0].Date) {
-        const date = new Date(summaryData.data[0].Date);
+      if (summaryData && summaryData.data && summaryData.data[0] && summaryData.data[0].LastDate) {
+        const date = new Date(summaryData.data[0].LastDate);
         if (!isNaN(date.getTime())) { // Check if date is valid
           // Format date as d-m-Y
           const day = String(date.getDate()).padStart(2, '0');
@@ -107,12 +108,13 @@ export default function StockMonitor() {
       
       // Map the summary data to our stocks
       const updatedStocks = Array.isArray(stocksData) ? stocksData.map((stock: Stock) => {
-        const stockSummary = summaryData.data.find((s: StockSummary) => s.StockCode === stock.code);
+        const stockSummary = summaryData.data.find((s: StockSummaryPasardana) => s.Code === stock.code);
         if (stockSummary) {
+          // console.log(stockSummary);
           return {
             ...stock,
-            currentPrice: stockSummary.Close,
-            change: stockSummary.Change
+            currentPrice: stockSummary.Last,
+            change: stockSummary.Last - stockSummary.PrevClosingPrice
           };
         }
         return stock;
