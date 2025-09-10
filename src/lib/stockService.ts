@@ -84,7 +84,7 @@ export async function getCachedStockSummary() {
       try {
         const errorData = await response.json();
         errorDetails = JSON.stringify(errorData);
-      } catch (e: any) {
+      } catch {
         errorDetails = await response.text();
       }
       console.error('Cached API Error Details:', {
@@ -99,12 +99,13 @@ export async function getCachedStockSummary() {
     const data = await response.json();
     console.log('Successfully fetched cached stock data');
     return data;
-  } catch (error: any) {
-    console.error('Error in getCachedStockSummary:', {
-      name: error?.name || 'UnknownError',
-      message: error?.message || 'No error message',
-      stack: error?.stack || 'No stack trace'
-    });
+  } catch (error: unknown) {
+    const errorInfo = {
+      name: error instanceof Error ? error.name : 'UnknownError',
+      message: error instanceof Error ? error.message : 'No error message',
+      stack: error instanceof Error ? error.stack : 'No stack trace'
+    };
+    console.error('Error in getCachedStockSummary:', errorInfo);
     return null;
   }
 }
