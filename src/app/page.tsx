@@ -1,4 +1,4 @@
-import StockMonitor from "./pages/index";
+import StockMonitor from "./pages";
 
 export default function Home() {
   return (
