@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import Head from 'next/head';
-import { fetchStockSummary } from '@/lib/stockService';
 
 type Stock = {
   code: string;
