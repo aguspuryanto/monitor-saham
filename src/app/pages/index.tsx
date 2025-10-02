@@ -2,22 +2,25 @@
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import Head from 'next/head';
-import { StockSummary, StockSummaryPasardana } from '@/types/stock.types';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/contexts/AuthContext';
+import { StockData } from '@/types/stock.types';
+import { StockSummaryPasardana } from '@/types/pasardana.types';
 
-type Stock = {
-  code: string;
-  buyPrice: number;
+interface Stock extends Omit<StockData, 'price'> {
   currentPrice: number;
+  buyPrice: number;
   stopLoss: number;
   takeProfit: number;
-  change?: number;
-};
+}
 
 type SortField = 'code' | 'buyPrice' | 'currentPrice' | '';
 type SortDirection = 'asc' | 'desc';
 
 export default function StockMonitor() {
   const [stocks, setStocks] = useState<Stock[]>([]);
+  const [stockSummary, setStockSummary] = useState<any[]>([]); // Using any[] as a temporary fix
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [newStock, setNewStock] = useState({
     code: '',
     buyPrice: '',
@@ -163,6 +166,9 @@ export default function StockMonitor() {
   // Tambah saham baru
   const handleAddStock = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
+    
+    setIsSubmitting(true);
     try {
       // Convert string values to numbers
       const stockToAdd = {
@@ -189,6 +195,8 @@ export default function StockMonitor() {
       }
     } catch (error) {
       console.error('Error adding stock:', error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -403,17 +411,21 @@ export default function StockMonitor() {
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                           {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(stock.takeProfit)}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${statusColor}`}>
-                            {status}
-                          </span>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <span className={`px-2 py-1 text-xs font-medium rounded-full ${statusColor}`}>{status}</span>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                           <button
-                            onClick={() => handleDeleteStock(stock.code)}
-                            className="text-red-600 hover:text-red-900"
+                            onClick={() => handleEditStock(stock)}
+                            className="text-blue-600 hover:text-blue-900"
                           >
-                            Hapus
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => handleDeleteStock(stock.code)}
+                            className="text-red-600 hover:text-red-900 ml-2"
+                          >
+                            Delete
                           </button>
                         </td>
                       </tr>

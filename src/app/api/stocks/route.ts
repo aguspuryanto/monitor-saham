@@ -55,7 +55,24 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const stocks = readData();
-    const newStock: Stock = await request.json();
+    const requestData = await request.json();
+    
+    // Validate and transform the incoming data
+    const newStock: Stock = {
+      code: String(requestData.code || '').trim().toUpperCase(),
+      buyPrice: Number(requestData.buyPrice) || 0,
+      currentPrice: Number(requestData.currentPrice) || 0,
+      stopLoss: Number(requestData.stopLoss) || 0,
+      takeProfit: Number(requestData.takeProfit) || 0,
+      change: 0
+    };
+
+    if (!newStock.code) {
+      return NextResponse.json(
+        { error: 'Stock code is required' },
+        { status: 400 }
+      );
+    }
     
     // Check if stock already exists
     const existingIndex = stocks.findIndex(stock => stock.code === newStock.code);

@@ -1,11 +1,11 @@
-export interface StockSummary {
-  StockCode: string;
-  Close: number;
-  Change: number;
-  Date: string;
-  // Add other properties from your stock data as needed
+export interface StockData {
+  code: string;
+  name: string;
+  price: number;
+  change: number;
+  changePercent: number;
+  lastUpdated?: string;
 }
-
 
 export interface StockSummaryPasardana {
   Id: number;

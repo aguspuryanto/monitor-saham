@@ -82,9 +82,41 @@
   {
     "code": "SCMA",
     "buyPrice": 249,
-    "currentPrice": "",
+    "currentPrice": 0,
     "stopLoss": 224.1,
     "takeProfit": 323.7,
+    "change": 0
+  },
+  {
+    "code": "IDEA",
+    "buyPrice": 0,
+    "currentPrice": 0,
+    "stopLoss": 0,
+    "takeProfit": 0,
+    "change": 0
+  },
+  {
+    "code": "CPRO",
+    "buyPrice": 72,
+    "currentPrice": 0,
+    "stopLoss": 64.8,
+    "takeProfit": 93.6,
+    "change": 0
+  },
+  {
+    "code": "EMAS",
+    "buyPrice": 4440,
+    "currentPrice": 0,
+    "stopLoss": 3996,
+    "takeProfit": 5772,
+    "change": 0
+  },
+  {
+    "code": "TFAS",
+    "buyPrice": 280,
+    "currentPrice": 0,
+    "stopLoss": 252,
+    "takeProfit": 364,
     "change": 0
   }
 ]
